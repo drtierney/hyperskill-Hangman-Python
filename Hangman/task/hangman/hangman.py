@@ -1,15 +1,21 @@
+import random
+
+
 def welcome():
     print("H A N G M A N")
-    print("The game will be available soon.")
 
 
-def play_game():
-    word = "python"
-    print("Guess the word:")
-    guess = input()
+def choose_word(words):
+    return random.choice(words)
+
+
+def start_game(words):
+    word = choose_word(words)
+    guess = input("Guess the word: ")
 
     print("You survived!") if guess == word else print("You lost!")
 
 
+languages = ['python', 'java', 'kotlin', 'javascript']
 welcome()
-play_game()
+start_game(languages)
