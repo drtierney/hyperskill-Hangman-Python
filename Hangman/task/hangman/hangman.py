@@ -1,21 +1,23 @@
 import random
 
 
-def welcome():
-    print("H A N G M A N")
+def choose_word(choices):
+    return random.choice(choices)
 
 
-def choose_word(words):
-    return random.choice(words)
+def hint_word(word):
+    return word[0:3] + ("-" * (len(word) - 3))
 
 
-def start_game(words):
-    word = choose_word(words)
-    guess = input("Guess the word: ")
-
+def guess_word(guess, word):
     print("You survived!") if guess == word else print("You lost!")
 
 
-languages = ['python', 'java', 'kotlin', 'javascript']
-welcome()
-start_game(languages)
+def start_game(words):
+    print("H A N G M A N")
+    word = choose_word(words)
+    hint = hint_word(word)
+    guess_word(input(f"Guess the word {hint}: "), word)
+
+
+start_game(['python', 'java', 'kotlin', 'javascript'])
