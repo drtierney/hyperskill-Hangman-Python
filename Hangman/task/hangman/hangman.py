@@ -1,23 +1,28 @@
 import random
 
 
-def choose_word(choices):
-    return random.choice(choices)
-
-
-def hint_word(word):
-    return word[0:3] + ("-" * (len(word) - 3))
-
-
-def guess_word(guess, word):
-    print("You survived!") if guess == word else print("You lost!")
-
-
-def start_game(words):
+def play_game(words, tries):
     print("H A N G M A N")
-    word = choose_word(words)
-    hint = hint_word(word)
-    guess_word(input(f"Guess the word {hint}: "), word)
+    print()
+
+    word = random.choice(words)
+    dashed = len(word) * "-".split()
+    letters = set(word)
+    print("".join(dashed))
+
+    while tries > 0:
+        guess = input("Input a letter: ")
+        if guess in letters:
+            indexes = [index for index, letter in enumerate(word) if letter == guess]
+            for i in indexes:
+                dashed[i] = guess
+        else:
+            print("That letter doesn't appear in the word")
+        print()
+        print("".join(dashed))
+        tries -= 1
 
 
-start_game(['python', 'java', 'kotlin', 'javascript'])
+play_game(['python', 'java', 'kotlin', 'javascript'], 8)
+print("Thanks for playing!")
+print("We'll see how well you did in the next stage")
