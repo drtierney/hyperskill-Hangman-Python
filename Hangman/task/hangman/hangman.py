@@ -1,27 +1,32 @@
 import random
 
 
-def play_game(words):
+def play_game(words, lives):
     print("H A N G M A N")
-    print()
-
     word = random.choice(words)
     dashed = len(word) * "-".split()
     letters = set(word)
-    print("".join(dashed))
 
-    for _ in range(8):
+    while lives > 0:
+        print()
+        print("".join(dashed))
         guess = input("Input a letter: ")
-        if guess in letters:
+        if guess in set(dashed):
+            print("No improvements")
+            lives -= 1
+        elif guess in letters:
             indexes = [index for index, letter in enumerate(word) if letter == guess]
             for i in indexes:
                 dashed[i] = guess
+            if set(word) == set(dashed):
+                print("You guessed the word!")
+                print("You survived!")
+                break
         else:
             print("That letter doesn't appear in the word")
-        print()
-        print("".join(dashed))
+            lives -= 1
+    else:
+        print("You lost!")
 
 
-play_game(['python', 'java', 'kotlin', 'javascript'])
-print("Thanks for playing!")
-print("We'll see how well you did in the next stage")
+play_game(['python', 'java', 'kotlin', 'javascript'], 8)
