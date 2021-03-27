@@ -1,7 +1,7 @@
 import random
 
 
-def play_game(words, tries):
+def play_game(words):
     print("H A N G M A N")
     print()
 
@@ -10,7 +10,7 @@ def play_game(words, tries):
     letters = set(word)
     print("".join(dashed))
 
-    while tries > 0:
+    for _ in range(8):
         guess = input("Input a letter: ")
         if guess in letters:
             indexes = [index for index, letter in enumerate(word) if letter == guess]
@@ -20,9 +20,8 @@ def play_game(words, tries):
             print("That letter doesn't appear in the word")
         print()
         print("".join(dashed))
-        tries -= 1
 
 
-play_game(['python', 'java', 'kotlin', 'javascript'], 8)
+play_game(['python', 'java', 'kotlin', 'javascript'])
 print("Thanks for playing!")
 print("We'll see how well you did in the next stage")
