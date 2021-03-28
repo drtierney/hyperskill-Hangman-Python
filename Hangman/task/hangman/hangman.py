@@ -36,4 +36,9 @@ def play_game(words, lives):
         print("You lost!")
 
 
-play_game(['python', 'java', 'kotlin', 'javascript'], 8)
+print('Type "play" to play the game, "exit" to quit:')
+choice = input()
+if choice == "play":
+    play_game(['python', 'java', 'kotlin', 'javascript'], 8)
+elif choice == "exit":
+    exit()
